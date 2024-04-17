@@ -284,7 +284,9 @@ class _HomePageState extends State<HomePage> {
                   // Action à exécuter lorsqu'un texte est saisi dans le champ de recherche
                 },
               )
-            : Text('Home Page'),
+            : Text('Accueil'),
+        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
@@ -350,11 +352,7 @@ class _HomePageState extends State<HomePage> {
 
         children: <Widget>[
           _buildMoneyWidget(),
-          Container(
-            height: 50,
-            width: 1000,
-            child: _Mychart(),
-          ),
+          _Mychart(),
         ],
       ),
 

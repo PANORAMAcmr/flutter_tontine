@@ -25,8 +25,8 @@ class _CircularChartWidgetState extends State<CircularChartWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      width: 300,
+      height: 450,
+      width: 500,
       child: SfCircularChart(
         legend: Legend(
           isVisible: true,
