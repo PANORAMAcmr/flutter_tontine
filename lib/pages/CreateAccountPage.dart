@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+/*import 'package:http/http.dart' as http;*/
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     String apiUrl =
         'http://192.168.1.48:8080/api/panorama/tontine/auth/signup'; // Remplacez par votre URL backend
 
-    try {
+/*    try {
       final response = await http.post(
         Uri.parse(apiUrl),
         body: {
@@ -67,7 +67,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           ],
         ),
       );
-    }
+    }*/
   }
 
   @override

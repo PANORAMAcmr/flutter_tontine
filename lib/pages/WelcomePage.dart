@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
+  final String? title;
+  const WelcomePage(this.title, {super.key});
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+   String? text;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +40,7 @@ class WelcomePage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
-                'Bienvenue dans notre application !',
+                widget.title??"Il n'y a aucun texte",
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,
