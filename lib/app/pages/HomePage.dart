@@ -246,10 +246,14 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:tontine/app/pages/main_wrapper.dart';
 
 import 'CircularChartWidget.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -315,7 +319,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -324,7 +327,7 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
-              child: Text(
+              child: const Text(
                 'Menu',
                 style: TextStyle(
                   color: Colors.white,
@@ -335,7 +338,9 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: Text('Option 1'),
               onTap: () {
-                // Action à exécuter lorsque l'option 1 du drawer est sélectionnée
+                if (mainWrapperState.mounted) {
+                  mainWrapperState.setSelectedIndex(2);
+                }
               },
             ),
             ListTile(
@@ -348,41 +353,13 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body:  Column(
-
-        children: <Widget>[
-          _buildMoneyWidget(),
-          _Mychart(),
-        ],
-      ),
-
-
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Association',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: 'Sanction',
-          ),
-          BottomNavigationBarItem(
-            icon: SizedBox.shrink(),
-            // Utilisez un espace vide pour le bouton central
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: 'Tontine',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.money_off_csred_rounded,color: Colors.yellow,),
-            label: 'Cotisation',
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _buildMoneyWidget(),
+            _Mychart(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -394,15 +371,18 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
+
   Widget _buildMoneyWidget() {
     // Fonction pour construire le widget affichant la somme d'argent
-    String moneyAmount = '\ 5000 FCFA'; // Exemple de somme d'argent (à remplacer par votre propre valeur)
+    String moneyAmount =
+        '\ 5000 FCFA'; // Exemple de somme d'argent (à remplacer par votre propre valeur)
     return Container(
       width: 150.0,
       height: 100.0,
       padding: EdgeInsets.all(20),
 
-      color: Colors.blue, // Couleur de fond du conteneur
+      color: Colors.blue,
+      // Couleur de fond du conteneur
       child: Text(
         "Montant: ${moneyAmount}",
         style: TextStyle(
@@ -413,9 +393,11 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Widget _Mychart(){
+
+  Widget _Mychart() {
     return CircularChartWidget();
   }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
