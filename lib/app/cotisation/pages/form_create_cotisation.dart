@@ -4,25 +4,28 @@ import 'package:tontine/app/tontine/services/tontine_service.dart';
 import 'package:tontine/core/form/validator.dart';
 import 'package:go_router/go_router.dart';
 
-class FormCreateTontine extends StatefulWidget {
-  const FormCreateTontine({super.key});
-static String route='/create-tontine';
+class FormCreateCotisation extends StatefulWidget {
+  const FormCreateCotisation({super.key});
+
+  static String route = '/create-cotisation';
+
   @override
-  State<FormCreateTontine> createState() => _FormCreateTontineState();
+  State<FormCreateCotisation> createState() => _FormCreateCotisationState();
 }
 
-class _FormCreateTontineState extends State<FormCreateTontine> {
+class _FormCreateCotisationState extends State<FormCreateCotisation> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _codeController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
+  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _lastNameController = TextEditingController();
+  TextEditingController _tontineNameController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
   TextEditingController _amountController = TextEditingController();
-  TontineService _tontineService = TontineService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nouvelle tontine'),
+        title: Text('Nouvelle Cotisation'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -31,14 +34,14 @@ class _FormCreateTontineState extends State<FormCreateTontine> {
           child: Column(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'Code'),
-                controller: _codeController,
+                decoration: InputDecoration(labelText: 'Nom'),
+                controller: _firstNameController,
                 validator: verifyIsEmpty,
               ),
               SizedBox(height: 15,),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Description'),
-                controller: _descriptionController,
+                decoration: InputDecoration(labelText: 'Prenom'),
+                controller: _lastNameController,
                 validator: verifyIsEmpty,
               ),
               SizedBox(height: 15,),
@@ -49,13 +52,22 @@ class _FormCreateTontineState extends State<FormCreateTontine> {
                 validator: verifyIsNumber,
               ),
               SizedBox(height: 15,),
+              TextFormField(
+                decoration:
+                InputDecoration(labelText: 'Nom de la cotisation'),
+                controller: _tontineNameController,
+                validator: verifyIsEmpty,
+              ),
+              SizedBox(height: 15,),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Date'),
+                controller: _tontineNameController,
+                validator: verifyIsEmpty,
+              ),
+              SizedBox(height: 15,),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    _tontineService.createTontine(Tontine.from(
-                        _codeController.text,
-                        _descriptionController.text,
-                        double.parse(_amountController.text)));
                     context.pop();
                   }
                 },

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tontine/app/tontine/pages/form_create_tontine.dart';
 
 class TontinePage extends StatefulWidget {
   const TontinePage({super.key});
@@ -14,24 +16,40 @@ class _TontinePageState extends State<TontinePage> {
       appBar: AppBar(
         title: const Text("Tontine"),
       ),
-      body:   SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Card(
                 child: ListTile(
-              leading: Icon(Icons.add,color: Theme.of(context).primaryColor,),
+              leading: Icon(
+                Icons.add,
+                color: Theme.of(context).primaryColor,
+              ),
               title: Text("Nouvelle tontine"),
+              onTap: () {
+                context.push(FormCreateTontine.route);
+              },
             )),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             Card(
                 child: ListTile(
-              leading: Icon(Icons.list_alt,color: Theme.of(context).primaryColor,),
+              leading: Icon(
+                Icons.list_alt,
+                color: Theme.of(context).primaryColor,
+              ),
               title: Text("Consulter les tontines"),
             )),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             Card(
                 child: ListTile(
-              leading: Icon(Icons.history,color: Theme.of(context).primaryColor,),
+              leading: Icon(
+                Icons.history,
+                color: Theme.of(context).primaryColor,
+              ),
               title: Text("Historique tontine"),
             )),
           ],

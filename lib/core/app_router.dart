@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tontine/app/cotisation/pages/cotisation_page.dart';
+import 'package:tontine/app/cotisation/pages/form_create_cotisation.dart';
 import 'package:tontine/app/inscription/pages/inscription_page.dart';
 import 'package:tontine/app/pages/HomePage.dart';
 import 'package:tontine/app/pages/WelcomePage.dart';
 import 'package:tontine/app/pages/main_wrapper.dart';
+import 'package:tontine/app/tontine/pages/form_create_tontine.dart';
 import 'package:tontine/app/tontine/pages/tontine_page.dart';
 
 class AppRouter {
@@ -25,6 +27,24 @@ class AppRouter {
       initialLocation: initRoute,
       navigatorKey: _rootNavigatorKey,
       routes: <RouteBase>[
+        GoRoute(
+            path: FormCreateTontine.route,
+            parentNavigatorKey: _rootNavigatorKey,
+            name: 'Nouvelle tontine',
+            builder: (context, state) {
+              return FormCreateTontine(
+                key: state.pageKey,
+              );
+            }),
+        GoRoute(
+            path: FormCreateCotisation.route,
+            parentNavigatorKey: _rootNavigatorKey,
+            name: 'Nouvelle cotisation',
+            builder: (context, state) {
+              return FormCreateCotisation(
+                key: state.pageKey,
+              );
+            }),
         StatefulShellRoute.indexedStack(
             builder: (context, state, navigationShell) {
               return MainWrapper(

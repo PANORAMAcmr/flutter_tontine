@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tontine/app/cotisation/pages/form_create_cotisation.dart';
 
 class CotisationPage extends StatefulWidget {
   const CotisationPage({super.key});
@@ -23,7 +25,10 @@ class _CotisationPageState extends State<CotisationPage> {
                 Icons.add,
                 color: Theme.of(context).primaryColor,
               ),
-              title: Text("Nouvelle tontine"),
+              title: Text("Nouvelle cotisation"),
+                  onTap: () {
+                    context.push(FormCreateCotisation.route);
+                  },
             )),
             SizedBox(
               height: 5,
